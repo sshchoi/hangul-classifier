@@ -2,6 +2,9 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ofxOpenCv.h"
+#include "ofxCv.h"
+#include "image_generator.h"
 
 class ofApp : public ofBaseApp{
 private:
@@ -31,5 +34,5 @@ public:
 	ofxButton clear_button;
 	ofxButton analyze_button;
 	ofxPanel gui;
-		
+	
 };

@@ -1,6 +1,5 @@
 #include "ofMain.h"
 #include "ofApp.h"
-#include "image_generator.hpp"
 
 //========================================================================
 int main( ){
