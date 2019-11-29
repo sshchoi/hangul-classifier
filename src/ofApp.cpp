@@ -9,7 +9,7 @@ void ofApp::setup(){
 	gui.add(clear_button.setup("clear"));
 	gui.add(analyze_button.setup("analyze"));
 	
-	fbo.allocate(1280,720);
+	fbo.allocate(kWindowSize, kWindowSize);
 	fbo.begin();
 	ofClear(255);
 	fbo.end();
@@ -25,14 +25,15 @@ void ofApp::update(){
 void ofApp::draw(){
 	
 	if(clear_button) {
-		fbo.allocate(1280,720);
+		// fbo.allocate(kWindowSize,kWindowSize);
 		fbo.begin();
 		ofClear(255);
 		fbo.end();
 	}
 	
 	if(analyze_button) {
-		//TODO: Scan image into a square, then put into naive bayes.
+		// TODO: Scan image into a square, then put into naive bayes.
+		
 	}
 	
 	fbo.draw(0, 0);
@@ -55,15 +56,16 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-	fbo.begin();
-	ofSetColor(ofColor::black);
-	ofDrawRectangle(mouseX-25,mouseY-25,50,50);
-	fbo.end();
+	// Same procedure as mousePressed, with placeholders for the parameters.
+	ofApp::mousePressed(0, 0, 0);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	fbo.begin();
+	ofSetColor(ofColor::black);
+	ofDrawRectangle(mouseX-(kBrushSize/2),mouseY-(kBrushSize/2),kBrushSize,kBrushSize);
+	fbo.end();
 }
 
 //--------------------------------------------------------------
