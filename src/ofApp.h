@@ -11,6 +11,7 @@ private:
 	const double kWindowSize = ofGetWindowWidth();
 	const double kDivisor = 28;
 	const double kBrushSize = kWindowSize / kDivisor;
+	image_generator H;
 	
 public:
 	void setup();

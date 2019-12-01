@@ -3,25 +3,17 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	
-//	ofBackground(255);
-//
-//	gui.setup();
-//	gui.add(clear_button.setup("clear"));
-//	gui.add(analyze_button.setup("analyze"));
-//
-//	fbo.allocate(kWindowSize, kWindowSize);
-//	fbo.begin();
-//	ofClear(255);
-//	fbo.end();
-	
-	cv::Mat M (260, 301, CV_8UC1, cvScalar(0, 0, 0));
-	
-	cv::putText(M, "hello", cvPoint((M.cols/2), M.rows/2), cv::FONT_HERSHEY_SCRIPT_SIMPLEX, 2, cvScalar(255,255,255), 1, 8);
-	
-	ofImage image;
-	
-	ofxCv::toOf(M, image);
-	image.save("trial.jpg");
+	ofBackground(255);
+
+	gui.setup();
+	gui.add(clear_button.setup("clear"));
+	gui.add(analyze_button.setup("analyze"));
+
+	fbo.allocate(kWindowSize, kWindowSize);
+	fbo.begin();
+	ofClear(255);
+	fbo.end();
+
 }
 
 //--------------------------------------------------------------

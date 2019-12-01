@@ -6,7 +6,9 @@
 	- Cleaned up code regarding the drawing brush size.
 - **11/28/19**
 	- Find 100 korean .ttf fonts to use.
-	- Using ofImage, create images for each character with all 100 fonts.
+	- Started to figure out how to add text to images and save them.
+- **11/29/19**
+- Continued to explore adding text to images and centering them.
 	
 	
 	
