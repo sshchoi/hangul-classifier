@@ -8,11 +8,12 @@
 	- Find 100 korean .ttf fonts to use.
 	- Started to figure out how to add text to images and save them.
 - **11/29/19**
-- Continued to explore adding text to images and centering them.
+	- Continued to explore adding text to images and centering them.
+- **11/30/19**
+	- Created method to iterate through korean fonts to be able to create images looping through them.
 	
 	
-	
-	Further developments:
+Further developments:
 	- screenshot of the image drawn in the GUI
 	- deskew image from GUI with opencv (possibly through warpIntoMe() method)
 	- 
