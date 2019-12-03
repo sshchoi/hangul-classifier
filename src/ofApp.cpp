@@ -13,7 +13,9 @@ void ofApp::setup(){
 	fbo.begin();
 	ofClear(255);
 	fbo.end();
-
+	
+	image_generator A;
+	A.CreateImage();
 }
 
 //--------------------------------------------------------------
@@ -23,9 +25,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	
 	if(clear_button) {
-		// fbo.allocate(kWindowSize,kWindowSize);
+//		fbo.allocate(kWindowSize,kWindowSize);
 		fbo.begin();
 		ofClear(255);
 		fbo.end();

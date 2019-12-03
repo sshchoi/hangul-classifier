@@ -35,5 +35,5 @@ public:
 	ofxButton clear_button;
 	ofxButton analyze_button;
 	ofxPanel gui;
-	
+
 };

@@ -19,7 +19,7 @@ public:
 	void CreateImage();
 	void LoadKorean();
 	
-	string text = "ㄱ";
+	string text = "Hi";
 	int fontFace = cv::FONT_HERSHEY_PLAIN;
 	int baseline = 0;
 	int thickness = 1;
