@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	
-	ofBackground(255);
+	ofBackground(0);
 
 	gui.setup();
 	gui.add(clear_button.setup("clear"));
@@ -11,11 +11,11 @@ void ofApp::setup(){
 
 	fbo.allocate(kWindowSize, kWindowSize);
 	fbo.begin();
-	ofClear(255);
+	ofClear(0);
 	fbo.end();
 	
-	image_generator A;
-	A.CreateImage();
+//	image_generator A;
+//	A.CreateImage();
 }
 
 //--------------------------------------------------------------
@@ -28,13 +28,18 @@ void ofApp::draw(){
 	if(clear_button) {
 //		fbo.allocate(kWindowSize,kWindowSize);
 		fbo.begin();
-		ofClear(255);
+		ofClear(0);
 		fbo.end();
 	}
 	
 	if(analyze_button) {
 		// TODO: Scan image into a square, then put into naive bayes.
+		ofPixels myPixels;
+		fbo.readToPixels(myPixels);
 		
+		ofImage image (myPixels);
+		
+		image.resize(28, 28);
 	}
 	
 	fbo.draw(0, 0);
@@ -64,7 +69,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 	fbo.begin();
-	ofSetColor(ofColor::black);
+	ofSetColor(ofColor::white);
 	ofDrawRectangle(mouseX-(kBrushSize/2),mouseY-(kBrushSize/2),kBrushSize,kBrushSize);
 	fbo.end();
 }

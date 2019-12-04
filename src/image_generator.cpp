@@ -26,7 +26,6 @@ void image_generator::CreateImage() {
 		count++;
 		CreateImage();
 	} else {
-		
 		// Put text in the center of the Mat.
 		cv::putText(M, text, cvPoint((M.cols - textSize.width)/2, (M.rows + textSize.height - thickness)/2), fontFace, fontScale, cvScalar(255,255,255), thickness, 8);
 
