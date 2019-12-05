@@ -7,11 +7,22 @@
 
 #include "image_generator.h"
 
-void image_generator::LoopAllFonts(std::string font_directory_path) {
+void image_generator::CreateTrainingSet(std::string labels_file, std::string font_directory_path) {
+	std::ifstream file(labels_file);
+	std::string line;
+
+	for (int i = 0; getline(file, line); i++) {
+		LoopAllFonts(font_directory_path, line);
+	}
+	file.close();
+}
+
+void image_generator::LoopAllFonts(std::string font_directory_path, std::string text) {
 	// Loops through all files in the given directory.
 	for (const auto & entry : std::filesystem::directory_iterator(font_directory_path)) {
 		font = LoadKoreanTTF(entry.path());
-		ofImage image = TTFToImage(font);
+		
+		ofImage image = TTFToImage(font, text);
 		cv::Mat mat_image = Deskew(image);
 
 		ofImage deskewed_image;
@@ -44,6 +55,7 @@ void image_generator::CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem:
 	char_width = ttf.stringWidth("가");
 	char_height = ttf.stringHeight("가");
 
+	// If font size is larger than image size, then decrease fontScale. If it is to small, then increase fontScale.
 	if(char_width > kPixelCount || char_height > kPixelCount) {
 		fontScale--;
 		font = LoadKoreanTTF(font_path);
@@ -53,7 +65,7 @@ void image_generator::CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem:
 	}
 }
 
-ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf) {
+ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf, std::string character) {
 	fboText.allocate(kPixelCount, kPixelCount);
 	
 	// Add drawn TTF into fboText.
@@ -65,7 +77,7 @@ ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf) {
 	float x = (kPixelCount - char_width)/2;
 	float y = (kPixelCount + char_height)/2;
 	
-	ttf.drawString("ㄱ", x, y);
+	ttf.drawString(character, x, y);
 	fboText.end();
 	
 	// Add fboText data into ofPixels to be made into an ofImage that can be saved.
@@ -110,7 +122,7 @@ void image_generator::SaveImage(ofImage image, std::string training_images_direc
 	count++;
 	
 	// Print out confirmation statement every 10 images loaded.
-	if(count%10 == 0) {
+	if(count%100 == 0) {
 		std::cout << to_string(count) << " images loaded." << std::endl;
 	}
 }

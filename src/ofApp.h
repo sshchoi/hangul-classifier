@@ -14,6 +14,7 @@ private:
 	const double kBrushSize = kWindowSize / (kPixelCount / kThickness);
 	
 	const std::string kFontPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/fonts";
+	const std::string kLabelsPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt";
 	image_generator H;
 	
 public:

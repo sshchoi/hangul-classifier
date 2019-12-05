@@ -21,11 +21,11 @@ private:
 	int fontScale = 32;
 	
 public:
-	void CreateTrainingSet();
-	void LoopAllFonts(std::string font_directory_path);
+	void CreateTrainingSet(std::string labels_file, std::string font_directory_path);
+	void LoopAllFonts(std::string font_directory_path, std::string text);
 	ofTrueTypeFont LoadKoreanTTF(const boost::filesystem::path font_path);
 	void CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem::path font_path);
-	ofImage TTFToImage(ofTrueTypeFont &ttf);
+	ofImage TTFToImage(ofTrueTypeFont &ttf, std::string character);
 	void SaveImage(ofImage image, std::string training_images_directory);
 	cv::Mat Deskew(ofImage& image);
 	

@@ -11,9 +11,13 @@
 	- Continued to explore adding text to images and centering them.
 - **11/30/19**
 	- Created method to iterate through korean fonts to be able to create images looping through them.
-	
-	
-Further developments:
-	- screenshot of the image drawn in the GUI
-	- deskew image from GUI with opencv (possibly through warpIntoMe() method)
-	- 
+- **12/03/19**
+	- Able to take in ofImage of the drawn text by the user in the GUI.
+	- Created sub directory for images to be saved into for better organization.
+	- Attempted to figure out how to show text in Korean as cv.putText would only allow for English.
+- **12/04/19**
+	- Further attempted program's ability to display Korean text.
+	- Changed thickness of the brush to match thickness of the fonts.
+- **12/05/19**
+	- Figured out how to write TTF text in Korean into an ofImage and save it, allowing for the creation of a testing set.
+	- Deskewed Korean alphabet images with ofxOpenCv.
