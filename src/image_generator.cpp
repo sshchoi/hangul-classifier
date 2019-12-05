@@ -49,13 +49,10 @@ ofTexture image_generator::LoadKoreanTexture() {
 	// Settings of font to include unicode of Korean.
 	ofTrueTypeFontSettings settings(file_path,24);
 	settings.antialiased = true;
+	
+	// Allow for typing of Korean.
 	settings.ranges = {
-		ofUnicode::HangulJamo,
-		ofUnicode::HangulExtendedA,
-		ofUnicode::HangulExtendedB,
-		ofUnicode::HangulSyllables,
-		ofUnicode::HangulCompatJamo,
-		ofUnicode::CJKUnified
+		ofAlphabet::Korean
 	};
 	ttf.load(settings);
 	
@@ -65,10 +62,11 @@ ofTexture image_generator::LoadKoreanTexture() {
 	return tex;
 }
 
-std::string image_generator::LoadFonts(std::string file_path) {
+std::string image_generator::LoadFonts(std::string directory_path) {
 	int to_count = 0;
 	
-	for (const auto & entry : std::filesystem::directory_iterator(file_path)) {
+	// Loops through all files in the given directory.
+	for (const auto & entry : std::filesystem::directory_iterator(directory_path)) {
 			std::cout << entry.path() << std::endl;
 			//ofTrueTypeFontSettings(entry.path(), fontScale);
 			ofTrueTypeFont my_font;
@@ -81,8 +79,5 @@ std::string image_generator::LoadFonts(std::string file_path) {
 }
 
 ofImage image_generator::TextureToImage(ofTexture &tex) {
-//	tex.draw(20, 20);
 	
-	std::string files = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts";
-
 }

@@ -15,7 +15,7 @@ void ofApp::setup(){
 	fbo.end();
 	
 //	H.CreateImage();			// <-------- Use when needed to test.
-	H.LoadKorean();				// <-------- Use when needed to test.
+	H.LoadKoreanTexture();				// <-------- Use when needed to test.
 }
 
 //--------------------------------------------------------------
