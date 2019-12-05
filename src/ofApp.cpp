@@ -40,7 +40,7 @@ void ofApp::draw(){
 		
 		image.resize(28, 28);
 		
-		std::string folder_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/";
+		std::string folder_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/test_images";
 				
 		std::string file_name = folder_path + "test.jpg";
 		image.save(file_name);
