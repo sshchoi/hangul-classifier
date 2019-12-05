@@ -9,8 +9,9 @@
 class ofApp : public ofBaseApp{
 private:
 	const double kWindowSize = ofGetWindowWidth();
-	const double kDivisor = 28;
-	const double kBrushSize = kWindowSize / kDivisor;
+	const double kPixelCount = 28;
+	const double kThickness = 2;
+	const double kBrushSize = kWindowSize / (kPixelCount / kThickness);
 	image_generator H;
 	
 public:

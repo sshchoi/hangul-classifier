@@ -41,30 +41,44 @@ void image_generator::CreateImage() {
 	}
 }
 
-void image_generator::LoadKorean() {
+ofTexture image_generator::LoadKoreanTexture() {
 	
-//	std::string file_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts/CuteFont-Regular.ttf";
-//	
-//	
-//	ofTrueTypeFont my_font;
-//	my_font.load(file_path, fontScale);
-//	my_font.drawString("hi!!", 10,10);
+	// Example String path that holds in Korean font.
+	std::string file_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts/CuteFont-Regular.ttf";
 	
-//	ofTrueTypeFontSettings settings(file_path, fontScale);
-//	settings.antialiased = true;
-//	settings.direction = OF_TTF_LEFT_TO_RIGHT;
-//	settings.addRanges(ofAlphabet::Korean);
-//	ofTrueTypeFont my_font;
-//	my_font.load(settings);
-//	my_font.drawString("ㅁㄴㅇ러ㅏㅣ;ㅁㄴㅇ리ㅏㅓ", 20, 10);
+	// Settings of font to include unicode of Korean.
+	ofTrueTypeFontSettings settings(file_path,24);
+	settings.antialiased = true;
+	settings.ranges = {
+		ofUnicode::HangulJamo,
+		ofUnicode::HangulExtendedA,
+		ofUnicode::HangulExtendedB,
+		ofUnicode::HangulSyllables,
+		ofUnicode::HangulCompatJamo,
+		ofUnicode::CJKUnified
+	};
+	ttf.load(settings);
 	
+	// Getting the text as a string texture.
+	tex = ttf.getStringTexture("ㄱ");
 	
+	return tex;
+}
+
+ofImage image_generator::TextureToImage(ofTexture &tex) {
+//	tex.draw(20, 20);
 	
-//	for (const auto & entry : std::filesystem::directory_iterator(file_path)) {
+	std::string files = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts";
+	
+	int to_count = 0;
+	for (const auto & entry : std::filesystem::directory_iterator(files)) {
 //		std::cout << entry.path() << std::endl;
 //		//ofTrueTypeFontSettings(entry.path(), fontScale);
 //		ofTrueTypeFont my_font;
 //		my_font.load(entry.path(), fontScale);
 //		my_font.drawString("hi!!", 100,100);
-//	}
+		
+		to_count++;
+	}
+	std::cout << "Number of fonts: " << to_count << std::endl;
 }

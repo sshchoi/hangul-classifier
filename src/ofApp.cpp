@@ -14,8 +14,8 @@ void ofApp::setup(){
 	ofClear(0);
 	fbo.end();
 	
-//	image_generator A;
-//	A.CreateImage();
+//	H.CreateImage();			// <-------- Use when needed to test.
+	H.LoadKorean();				// <-------- Use when needed to test.
 }
 
 //--------------------------------------------------------------
@@ -26,20 +26,28 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	if(clear_button) {
-//		fbo.allocate(kWindowSize,kWindowSize);
 		fbo.begin();
 		ofClear(0);
 		fbo.end();
 	}
 	
 	if(analyze_button) {
-		// TODO: Scan image into a square, then put into naive bayes.
+		// TODO: Put scanned image into trained naive bayes classifier.
 		ofPixels myPixels;
 		fbo.readToPixels(myPixels);
 		
 		ofImage image (myPixels);
 		
 		image.resize(28, 28);
+		
+		std::string folder_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/";
+		
+		// TODO: Delete the naming using time if not needed.
+		auto p = std::chrono::system_clock::now();
+		std::time_t t = std::chrono::system_clock::to_time_t(p);
+		
+		std::string file_name = folder_path + to_string(t) + ".jpg";
+		image.save(file_name);
 	}
 	
 	fbo.draw(0, 0);

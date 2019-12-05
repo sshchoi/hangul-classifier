@@ -17,13 +17,17 @@
 class image_generator {
 public:
 	void CreateImage();
-	void LoadKorean();
+	ofTexture LoadKoreanTexture();
+	ofImage TextureToImage(ofTexture &tex);
 	
 	string text = "Hi";
 	int fontFace = cv::FONT_HERSHEY_PLAIN;
 	int baseline = 0;
 	int thickness = 1;
 	double fontScale = 1;
+	
+	ofTrueTypeFont ttf;
+	ofTexture tex;
 	
 	int count = 4;
 };
