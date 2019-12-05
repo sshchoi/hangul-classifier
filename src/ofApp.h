@@ -12,6 +12,8 @@ private:
 	const double kPixelCount = 28;
 	const double kThickness = 2;
 	const double kBrushSize = kWindowSize / (kPixelCount / kThickness);
+	
+	const std::string kFontPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts";
 	image_generator H;
 	
 public:

@@ -16,21 +16,16 @@
 
 class image_generator {
 public:
-	std::string LoopAllFonts(std::string directory_path);
-	ofTrueTypeFont LoadKoreanTTF(std::string font_path);
+	void LoopAllFonts(std::string font_directory_path);
+	ofTrueTypeFont LoadKoreanTTF(const boost::filesystem::path font_path);
 	ofImage TTFToImage(ofTrueTypeFont &ttf);
-	
-	string text = "Hi";
-	int fontFace = cv::FONT_HERSHEY_PLAIN;
-	int baseline = 0;
-	int thickness = 1;
-	double fontScale = 1;
+	void SaveImage(ofImage image, std::string training_images_directory);
 	
 	ofTrueTypeFont ttf;
 	ofTexture tex;
 	ofFbo fboText;
 	
-	int count = 4;
+	int count = 0;
 };
 
 #endif /* image_generator_hpp */

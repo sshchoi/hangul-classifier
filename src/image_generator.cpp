@@ -7,23 +7,19 @@
 
 #include "image_generator.h"
 
-std::string image_generator::LoopAllFonts(std::string directory_path) {
-	int to_count = 0;
-	
+void image_generator::LoopAllFonts(std::string font_directory_path) {
 	// Loops through all files in the given directory.
-	for (const auto & entry : std::filesystem::directory_iterator(directory_path)) {
-			std::cout << entry.path() << std::endl;
-			//ofTrueTypeFontSettings(entry.path(), fontScale);
-			ofTrueTypeFont my_font;
-			my_font.load(entry.path(), fontScale);
-			my_font.drawString("hi!!", 100,100);
-			
-			to_count++;
-		}
-	std::cout << "Number of fonts: " << to_count << std::endl;
+	for (const auto & entry : std::filesystem::directory_iterator(font_directory_path)) {
+		std::cout << entry.path() << std::endl;
+		ofTrueTypeFont font = LoadKoreanTTF(entry.path());
+		ofImage image = TTFToImage(font);
+		
+		std::string save_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/test_images/";
+		SaveImage(image, save_path);
+	}
 }
 
-ofTrueTypeFont image_generator::LoadKoreanTTF(std::string font_path) {
+ofTrueTypeFont image_generator::LoadKoreanTTF(const boost::filesystem::path font_path) {
 	// Settings of font to include unicode of Korean.
 	ofTrueTypeFontSettings settings(font_path,24);
 	settings.antialiased = true;
@@ -55,5 +51,13 @@ ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf) {
 
 	ofImage image;
 	image.setFromPixels(pixels);
-	image.save("file.jpg");
+	
+	return image;
+}
+
+void image_generator::SaveImage(ofImage image, std::string training_images_directory) {
+	// Set up naming of saved training image file.
+	std::string file_name = training_images_directory + to_string(count) + ".jpg";
+	image.save(file_name);
+	count++;
 }
