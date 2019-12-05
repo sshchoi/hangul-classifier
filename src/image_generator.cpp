@@ -109,6 +109,7 @@ void image_generator::SaveImage(ofImage image, std::string training_images_direc
 	image.save(file_name);
 	count++;
 	
+	// Print out confirmation statement every 10 images loaded.
 	if(count%10 == 0) {
 		std::cout << to_string(count) << " images loaded." << std::endl;
 	}
