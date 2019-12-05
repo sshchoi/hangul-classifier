@@ -19,6 +19,7 @@ public:
 	void CreateImage();
 	ofTexture LoadKoreanTexture();
 	ofImage TextureToImage(ofTexture &tex);
+	std::string LoadFonts(std::string file_path);
 	
 	string text = "Hi";
 	int fontFace = cv::FONT_HERSHEY_PLAIN;

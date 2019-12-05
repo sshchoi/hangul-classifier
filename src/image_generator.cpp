@@ -65,20 +65,24 @@ ofTexture image_generator::LoadKoreanTexture() {
 	return tex;
 }
 
+std::string image_generator::LoadFonts(std::string file_path) {
+	int to_count = 0;
+	
+	for (const auto & entry : std::filesystem::directory_iterator(file_path)) {
+			std::cout << entry.path() << std::endl;
+			//ofTrueTypeFontSettings(entry.path(), fontScale);
+			ofTrueTypeFont my_font;
+			my_font.load(entry.path(), fontScale);
+			my_font.drawString("hi!!", 100,100);
+			
+			to_count++;
+		}
+	std::cout << "Number of fonts: " << to_count << std::endl;
+}
+
 ofImage image_generator::TextureToImage(ofTexture &tex) {
 //	tex.draw(20, 20);
 	
 	std::string files = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fonts";
-	
-	int to_count = 0;
-	for (const auto & entry : std::filesystem::directory_iterator(files)) {
-//		std::cout << entry.path() << std::endl;
-//		//ofTrueTypeFontSettings(entry.path(), fontScale);
-//		ofTrueTypeFont my_font;
-//		my_font.load(entry.path(), fontScale);
-//		my_font.drawString("hi!!", 100,100);
-		
-		to_count++;
-	}
-	std::cout << "Number of fonts: " << to_count << std::endl;
+
 }
