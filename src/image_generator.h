@@ -16,10 +16,9 @@
 
 class image_generator {
 public:
-	void CreateImage();
-	ofTexture LoadKoreanTexture();
-	ofImage TextureToImage(ofTexture &tex);
-	std::string LoadFonts(std::string directory_path);
+	std::string LoopAllFonts(std::string directory_path);
+	ofTrueTypeFont LoadKoreanTTF(std::string font_path);
+	ofImage TTFToImage(ofTrueTypeFont &ttf);
 	
 	string text = "Hi";
 	int fontFace = cv::FONT_HERSHEY_PLAIN;
@@ -29,6 +28,7 @@ public:
 	
 	ofTrueTypeFont ttf;
 	ofTexture tex;
+	ofFbo fboText;
 	
 	int count = 4;
 };
