@@ -23,13 +23,14 @@ void image_generator::LoopAllFonts(std::string font_directory_path, std::string 
 		font = LoadKoreanTTF(entry.path());
 		
 		ofImage image = TTFToImage(font, text);
+		
 		cv::Mat mat_image = Deskew(image);
 
 		ofImage deskewed_image;
 		ofxCv::toOf(mat_image, deskewed_image);
 
 		std::string save_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
-		SaveImage(image, save_path);
+		SaveImage(deskewed_image, save_path);
 	}
 }
 
@@ -37,6 +38,7 @@ ofTrueTypeFont image_generator::LoadKoreanTTF(const boost::filesystem::path font
 	// Settings of font to include unicode of Korean.
 	ofTrueTypeFontSettings settings(font_path, fontScale);
 	settings.antialiased = true;
+	settings.contours = true;
 	
 	// Allow for typing of Korean.
 	settings.ranges = {
@@ -73,9 +75,14 @@ ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf, std::string character) 
 			ofBackground(0);
 			ofSetColor(255);
 	
+	float x_center = TextToCenter(ttf, character, 'x');
+	float y_center = TextToCenter(ttf, character, 'y');
+	
 	// Set image in the middle of the canvas.
-	float x = (kPixelCount - char_width)/2;
-	float y = (kPixelCount + char_height)/2;
+//	float x = (kPixelCount - char_width)/2;
+//	float y = (kPixelCount + char_height)/2;
+	float x = (kPixelCount)/2 - x_center;
+	float y = (kPixelCount)/2 - y_center;
 	
 	ttf.drawString(character, x, y);
 	fboText.end();
@@ -88,6 +95,24 @@ ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf, std::string character) 
 	image.setFromPixels(pixels);
 	
 	return image;
+}
+
+float image_generator::TextToCenter(ofTrueTypeFont &ttf, std::string character, char coordinate) {
+	bool vflip = true;
+	// Set filled as false in order to get contours.
+	bool filled = false;
+	
+	vector <ofPath> paths = font.getStringAsPoints(character, vflip, filled);
+	// Get outline of only the first element in paths, as the text is of length 1.
+	ofPolyline polylines = paths[0].getOutline()[0];
+	
+	if(coordinate == 'x') {
+		return polylines.getCentroid2D().x;
+	} else if (coordinate == 'y') {
+		return polylines.getCentroid2D().y;
+	} else {
+		throw "Incorrect Coordinate Type.";
+	}
 }
 
 cv::Mat image_generator::Deskew(ofImage& image) {

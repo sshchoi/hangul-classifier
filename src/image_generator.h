@@ -57,12 +57,14 @@ public:
 	*/
 	ofImage TTFToImage(ofTrueTypeFont &ttf, std::string character);
 	
+	
+	//TODO: Fix param names.
 	/**
-	 Takes in an ofImage and saves it to the given directory.
-	 @param image ofImage that will be saved as a jpg file.
-	 @param training_images_directory The directory where training images will be saved to.
-	*/
-	void SaveImage(ofImage image, std::string training_images_directory);
+	 Centers the text in the ofImage to increase the classifier's effectiveness.
+	 @param img The unfixed ofImage.
+	 @return The ofImage with the centered text.
+	 */
+	float TextToCenter(ofTrueTypeFont &ttf, std::string character, char coordinate);
 	
 	/**
 	 Deskews text images to allow classifier to identify characters easier.
@@ -70,6 +72,13 @@ public:
 	 @return Mat with the deskewed text.
 	 */
 	cv::Mat Deskew(ofImage& image);
+	
+	/**
+	 Takes in an ofImage and saves it to the given directory.
+	 @param image ofImage that will be saved as a jpg file.
+	 @param training_images_directory The directory where training images will be saved to.
+	*/
+	void SaveImage(ofImage image, std::string training_images_directory);
 	
 	ofTrueTypeFont ttf;
 	ofFbo fboText;
