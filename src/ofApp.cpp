@@ -14,8 +14,7 @@ void ofApp::setup(){
 	ofClear(0);
 	fbo.end();
 	
-//	H.CreateImage();			// <-------- Use when needed to test.
-	H.CreateTrainingSet(kLabelsPath, kFontPath);
+//	H.CreateTrainingSet(kLabelsPath, kFontPath);
 }
 
 //--------------------------------------------------------------
