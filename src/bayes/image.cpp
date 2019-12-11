@@ -37,11 +37,12 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 	int i = 0, z = 0;
 	
 	// Loop through all images and create dataset vector.
-	for (const auto & entry : std::filesystem::directory_iterator(images_directory_path)) {
+	for(int num = 1; num < NUM_TRAINING_IMAGES + 1; num++) {
+		std::string path = images_directory_path + std::to_string(num) + ".jpg";
 		
 		ofImage img;
-		if(img.load(entry.path())) {
-//			std::cout << entry.path() << std::endl;
+		if(img.load(path)) {
+			//			std::cout << entry.path() << std::endl;
 			img.setImageType(OF_IMAGE_GRAYSCALE);
 			ofPixels &pixels = img.getPixels();
 			
@@ -55,7 +56,6 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 						line.push_back('0');
 					}
 				}
-//				std::cout << line << std::endl;
 				dataset[i].image.push_back(line);
 			}
 			i++;
