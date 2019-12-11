@@ -14,7 +14,8 @@ void ofApp::setup(){
 	ofClear(0);
 	fbo.end();
 	
-	H.CreateTrainingSet(kLabelsPath, kFontPath);
+//	H.CreateTrainingSet(kLabelsPath, kFontPath);      //<-- Use when needed.
+	CreateProbabilityModel();
 }
 
 //--------------------------------------------------------------
@@ -105,4 +106,14 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::CreateProbabilityModel() {
+	std::vector<Image> training(NUM_TRAINING_IMAGES);
+	std::string training_labels =  "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt";
+	std::string training_images = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
+	
+	//Filling training vector with images and labels that are connected through its classification.
+	ImageVector(training_labels, training_images, training);
+	ShadedProbability(training, training_labels);
 }

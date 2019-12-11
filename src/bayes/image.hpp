@@ -16,10 +16,13 @@
 #include <cstring>
 #include <map>
 #include <iostream>
+#include "ofxCv.h"
+#include "ofxOpenCv.h"
 
 constexpr size_t IMAGE_SIZE = 28;
 const char WHITE = ' ';
 const int NUM_TRAINING_IMAGES = 2400;
+const int NUM_FONTS = 100;
 
 struct Image {
     char pixels[IMAGE_SIZE][IMAGE_SIZE];
@@ -36,15 +39,7 @@ struct Image {
  * @param data_text
  * @param dataset
  */
-void ImageVector(std::string data_labels, std::string data_text, std::vector<Image> &dataset);
-
-/**
- * Find total number of occurences for a certain class.
- * @param data_labels
- * @param wanted
- * @return Total number of occurences for a certain class as an integer.
- */
-double TotalNumberOfSample(std::string data_labels, int wanted);
+void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset);
 
 /**
  * Computes the prior probability (# of occurences for a certain class / # of all images)

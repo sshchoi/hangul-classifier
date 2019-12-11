@@ -5,6 +5,8 @@
 #include "ofxOpenCv.h"
 #include "ofxCv.h"
 #include "image_generator.h"
+#include "image.hpp"
+#include "model.h"
 
 class ofApp : public ofBaseApp{
 private:
@@ -34,6 +36,8 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
+	
+	void CreateProbabilityModel();
 	
 	ofFbo fbo;
 	

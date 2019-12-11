@@ -146,7 +146,7 @@ MapClassification(std::string probabilities_txt, std::vector<Image> &guess, std:
             }
 
             //Compute prior probabilities with Laplace Smoothing per class for each pixel.
-            double log_probability_class = log(ComputePriors(TotalNumberOfSample(training_labels, j)));
+            double log_probability_class = log(ComputePriors(NUM_FONTS));
             log_probability[i][j] = log_probability_class + total;
 
             total = 0;
