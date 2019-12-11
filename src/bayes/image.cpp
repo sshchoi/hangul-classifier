@@ -7,7 +7,7 @@
 
 #include "image.hpp"
 
-void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset) {
+void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset, int num) {
 	
 	//File stream of labels
 	std::ifstream file(data_labels);
@@ -30,7 +30,7 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 		do {
 			dataset[image_count].classification = labels[i];
 			image_count++;
-		} while (image_count % NUM_FONTS != 0);
+		} while (image_count % num != 0);
 	}
 	
 	// Each image consists of 28x28 pixels.
@@ -40,22 +40,25 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 	for (const auto & entry : std::filesystem::directory_iterator(images_directory_path)) {
 		
 		ofImage img;
-		std::string line = "";
 		if(img.load(entry.path())) {
+//			std::cout << entry.path() << std::endl;
+			img.setImageType(OF_IMAGE_GRAYSCALE);
+			ofPixels &pixels = img.getPixels();
+			
 			for (int k = 0; k < IMAGE_SIZE; k++) {
+				std::string line = "";
 				for (int l = 0; l < IMAGE_SIZE; l++) {
-					if (img.getColor(l, k) == ofColor::black) {
-						line.push_back('0');
-					} else {
+					
+					if(pixels[IMAGE_SIZE*k + l] > 180) {
 						line.push_back('1');
+					} else {
+						line.push_back('0');
 					}
 				}
+//				std::cout << line << std::endl;
 				dataset[i].image.push_back(line);
-				z++;
-				if (z % IMAGE_SIZE == 0) {
-					i++;
-				}
 			}
+			i++;
 		}
 	}
 }

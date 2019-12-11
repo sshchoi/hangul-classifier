@@ -38,7 +38,7 @@ struct Image {
  * @param data_text
  * @param dataset
  */
-void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset);
+void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset, int num);
 
 /**
  * Computes the prior probability (# of occurences for a certain class / # of all images)

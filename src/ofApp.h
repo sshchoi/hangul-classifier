@@ -14,9 +14,14 @@ private:
 	const double kPixelCount = 28;
 	const double kThickness = 2;
 	const double kBrushSize = kWindowSize / (kPixelCount / kThickness);
+	const int kTestingSize = 96;
+	const int kTrainingSize = 2400;
+	const int kNumCharacters = 24;
 	
 	const std::string kFontPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/fonts";
 	const std::string kLabelsPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt";
+	const std::string kTestingLabelsPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/testing_labels.txt";
+	const std::string kTestingImagesPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/test_images/";
 	
 	image_generator H;
 	
@@ -38,6 +43,7 @@ public:
 	void gotMessage(ofMessage msg);
 	
 	void CreateProbabilityModel();
+	void TestModelAccuracy();
 	
 	ofFbo fbo;
 	

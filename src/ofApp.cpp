@@ -15,7 +15,8 @@ void ofApp::setup(){
 	fbo.end();
 	
 //	H.CreateTrainingSet(kLabelsPath, kFontPath);								//<-- Use when needed.
-	CreateProbabilityModel();
+//	CreateProbabilityModel();
+	TestModelAccuracy();
 }
 
 //--------------------------------------------------------------
@@ -110,10 +111,46 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 void ofApp::CreateProbabilityModel() {
 	std::vector<Image> training(NUM_TRAINING_IMAGES);
-	std::string training_labels =  "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt";
+	std::string training_labels = kLabelsPath;
 	std::string training_images = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
 	
 	//Filling training vector with images and labels that are connected through its classification.
-	ImageVector(training_labels, training_images, training);
+	ImageVector(training_labels, training_images, training, kTrainingSize/kNumCharacters);
 	ShadedProbability(training, training_labels);
+}
+
+void ofApp::TestModelAccuracy() {
+	//Creating a vector with each binary-converted image and label connected.
+//	std::vector<Image> testing(kTestingSize);
+	std::vector<Image> testing(kTestingSize);
+	std::string testing_labels = kTestingLabelsPath;
+	std::string testing_images = kTestingImagesPath;
+	std::string training_labels = kLabelsPath;
+	
+	ImageVector(testing_labels, testing_images, testing, kTestingSize/kNumCharacters);
+	
+	//Creating 2D vector of probabilities of each class for each number in testing.
+	std::string probability_model = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/probability_model.txt";
+	std::vector<std::vector<double>> classification = MapClassification(probability_model, testing,
+																																			training_labels);
+	
+	//Calculating accuracy of model.
+	double num_correct = 0;
+	for (int i = 0; i < testing.size(); i++) {
+		
+		std::ifstream file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt");
+		GotoLine(file,PosteriorProbabilities(classification[i]));
+
+		std::string line;
+    file >> line;
+
+//		std::cout << PosteriorProbabilities(classification[i]) << std::endl;
+		
+		if (line.compare(testing[i].classification) == 0) {
+			num_correct++;
+		}
+		std::cout << num_correct << std::endl;
+	}
+
+	std::cout << "Accuracy Percentage: " << (100 * (num_correct / testing.size())) << "%";
 }
