@@ -44,8 +44,7 @@ public:
 	/**
 	 Creates an ofImage with the given character printed out with the given ofTrueTypeFont.
 	 @param ttf ofTrueTypeFont with settings that will be checked.
-	 @param character The text that will be printed out onto the ofImage.
-	 @return ofImage with character printed out with the given ofTrueTypeFont.
+	 @param font_path The file path of the chosen font.
 	*/
 	void CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem::path font_path);
 	
@@ -60,9 +59,11 @@ public:
 	
 	//TODO: Fix param names.
 	/**
-	 Centers the text in the ofImage to increase the classifier's effectiveness.
-	 @param img The unfixed ofImage.
-	 @return The ofImage with the centered text.
+	 Finds the centroid of the text image.
+	 @param ttf The ofTrueTypeFont with settings in place.
+	 @param character The text character that is in the image.
+	 @param coordinate Whether the user wants the 'x' or 'y' coordinate.
+	 @return The center of the text image in x and y coordinates.
 	 */
 	float TextToCenter(ofTrueTypeFont &ttf, std::string character, char coordinate);
 	

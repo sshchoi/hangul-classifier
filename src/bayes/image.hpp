@@ -25,7 +25,7 @@ struct Image {
     char pixels[IMAGE_SIZE][IMAGE_SIZE];
 
     std::vector<std::string> image;
-    //What Korean character the image is.
+    // What Korean character the image is.
     std::string classification;
 
 };

@@ -20,12 +20,11 @@ void image_generator::CreateTrainingSet(std::string labels_file, std::string fon
 void image_generator::LoopAllFonts(std::string font_directory_path, std::string text) {
 	// Loops through all files in the given directory.
 	for (const auto & entry : std::filesystem::directory_iterator(font_directory_path)) {
+		std::cout << "Font: " << entry.path() << std::endl;
 		font = LoadKoreanTTF(entry.path());
-		
 		ofImage image = TTFToImage(font, text);
-		
 		cv::Mat mat_image = Deskew(image);
-
+		
 		ofImage deskewed_image;
 		ofxCv::toOf(mat_image, deskewed_image);
 
@@ -46,10 +45,9 @@ ofTrueTypeFont image_generator::LoadKoreanTTF(const boost::filesystem::path font
 	};
 	
 	// Loads TTF Settings into TTF.
-	ttf.load(settings);
+	ttf.load(settings);	
 	
 	CheckTTFSize(ttf, font_path);
-
 	return ttf;
 }
 
@@ -60,10 +58,13 @@ void image_generator::CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem:
 	// If font size is larger than image size, then decrease fontScale. If it is to small, then increase fontScale.
 	if(char_width > kPixelCount || char_height > kPixelCount) {
 		fontScale--;
-		font = LoadKoreanTTF(font_path);
+		std::cout << count << ": " << fontScale << std::endl;
+		LoadKoreanTTF(font_path);
+		return false;
 	} else if (char_width < kPixelCount-kRange && char_height < kPixelCount-kRange) {
 		fontScale++;
-		font = LoadKoreanTTF(font_path);
+		std::cout << count << ": " << fontScale << std::endl;
+		LoadKoreanTTF(font_path);
 	}
 }
 
@@ -77,13 +78,11 @@ ofImage image_generator::TTFToImage(ofTrueTypeFont &ttf, std::string character) 
 	
 	float x_center = TextToCenter(ttf, character, 'x');
 	float y_center = TextToCenter(ttf, character, 'y');
-	
+
 	// Set image in the middle of the canvas.
-//	float x = (kPixelCount - char_width)/2;
-//	float y = (kPixelCount + char_height)/2;
 	float x = (kPixelCount)/2 - x_center;
 	float y = (kPixelCount)/2 - y_center;
-	
+
 	ttf.drawString(character, x, y);
 	fboText.end();
 	
