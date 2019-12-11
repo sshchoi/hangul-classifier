@@ -20,7 +20,6 @@ void image_generator::CreateTrainingSet(std::string labels_file, std::string fon
 void image_generator::LoopAllFonts(std::string font_directory_path, std::string text) {
 	// Loops through all files in the given directory.
 	for (const auto & entry : std::filesystem::directory_iterator(font_directory_path)) {
-		std::cout << "Font: " << entry.path() << std::endl;
 		font = LoadKoreanTTF(entry.path());
 		ofImage image = TTFToImage(font, text);
 		cv::Mat mat_image = Deskew(image);
@@ -58,12 +57,10 @@ void image_generator::CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem:
 	// If font size is larger than image size, then decrease fontScale. If it is to small, then increase fontScale.
 	if(char_width > kPixelCount || char_height > kPixelCount) {
 		fontScale--;
-		std::cout << count << ": " << fontScale << std::endl;
 		LoadKoreanTTF(font_path);
 		return false;
 	} else if (char_width < kPixelCount-kRange && char_height < kPixelCount-kRange) {
 		fontScale++;
-		std::cout << count << ": " << fontScale << std::endl;
 		LoadKoreanTTF(font_path);
 	}
 }
