@@ -4,6 +4,7 @@
 //
 //  Created by SeungHoon Choi on 12/5/19.
 //
+#pragma once
 
 #ifndef image_hpp
 #define image_hpp
@@ -17,10 +18,8 @@
 #include <map>
 #include <iostream>
 #include "ofxCv.h"
-#include "ofxOpenCv.h"
 
 constexpr size_t IMAGE_SIZE = 28;
-const char WHITE = ' ';
 const int NUM_TRAINING_IMAGES = 2400;
 const int NUM_FONTS = 100;
 

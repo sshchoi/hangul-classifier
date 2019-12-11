@@ -58,7 +58,6 @@ void image_generator::CheckTTFSize(ofTrueTypeFont &ttf, const boost::filesystem:
 	if(char_width > kPixelCount || char_height > kPixelCount) {
 		fontScale--;
 		LoadKoreanTTF(font_path);
-		return false;
 	} else if (char_width < kPixelCount-kRange && char_height < kPixelCount-kRange) {
 		fontScale++;
 		LoadKoreanTTF(font_path);

@@ -6,7 +6,7 @@
 #include "ofxCv.h"
 #include "image_generator.h"
 #include "image.hpp"
-#include "model.h"
+#include "model.hpp"
 
 class ofApp : public ofBaseApp{
 private:

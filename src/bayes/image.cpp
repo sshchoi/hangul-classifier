@@ -7,7 +7,6 @@
 
 #include "image.hpp"
 
-// TODO: Change std::string data_text to the folder of ofImages.
 void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset) {
 	
 	//File stream of labels

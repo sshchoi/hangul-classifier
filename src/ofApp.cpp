@@ -14,7 +14,7 @@ void ofApp::setup(){
 	ofClear(0);
 	fbo.end();
 	
-//	H.CreateTrainingSet(kLabelsPath, kFontPath);      //<-- Use when needed.
+//	H.CreateTrainingSet(kLabelsPath, kFontPath);								//<-- Use when needed.
 	CreateProbabilityModel();
 }
 
