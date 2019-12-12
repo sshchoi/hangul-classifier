@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	
+	// Set up the GUI and Fbo.
 	ofBackground(0);
 	
 	gui.setup();
@@ -14,6 +15,7 @@ void ofApp::setup(){
 	ofClear(0);
 	fbo.end();
 
+	// Setup the ofTrueTypeFont to print out the analyzed character.
 	ofTrueTypeFontSettings settings(kFontPath + "/NanumSquare_acB.ttf", 20);
 	settings.antialiased = true;
 		
@@ -25,13 +27,11 @@ void ofApp::setup(){
 	// Loads TTF Settings into TTF.
 	print.load(settings);
 	
-	//	H.CreateTrainingSet(kLabelsPath, kFontPath);								//<-- Use when needed.
-	//	CreateProbabilityModel();
-//	TestModelAccuracy();
-}
-
-//--------------------------------------------------------------
-void ofApp::update(){
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––-––
+	
+//	H.CreateTrainingSet(kLabelsPath, kFontPath);								//<-- Use when needed.
+//	CreateProbabilityModel();																		//<-- Use when needed.
+//	TestModelAccuracy();																				//<-- Use when needed.
 	
 }
 
@@ -48,7 +48,6 @@ void ofApp::draw(){
 	}
 	
 	if(analyze_button) {
-		// TODO: Put scanned image into trained naive bayes classifier.
 		ofPixels myPixels;
 		fbo.readToPixels(myPixels);
 		
@@ -110,20 +109,6 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-	
-}
-
-//--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
 	// Same procedure as mousePressed, with placeholders for the parameters.
 	ofApp::mousePressed(0, 0, 0);
@@ -138,35 +123,6 @@ void ofApp::mousePressed(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-	
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-	
-}
-
 void ofApp::CreateProbabilityModel() {
 	std::vector<Image> training(NUM_TRAINING_IMAGES);
 	std::string training_labels = kLabelsPath;
@@ -177,6 +133,7 @@ void ofApp::CreateProbabilityModel() {
 	ShadedProbability(training, training_labels);
 }
 
+//--------------------------------------------------------------
 void ofApp::TestModelAccuracy() {
 	//Creating a vector with each binary-converted image and label connected.
 	std::vector<Image> testing(kTestingSize);
