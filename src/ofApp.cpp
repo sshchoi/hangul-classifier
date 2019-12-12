@@ -48,11 +48,12 @@ void ofApp::draw(){
 	}
 	
 	if(analyze_button) {
+		
+		// Create 28x28 image and save it to a directory.
 		ofPixels myPixels;
 		fbo.readToPixels(myPixels);
 		
 		ofImage image (myPixels);
-		
 		image.resize(28, 28);
 		
 		std::string folder_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/analyze/";
@@ -63,8 +64,6 @@ void ofApp::draw(){
 		//------------------------------------------------------
 		
 		// Each image consists of 28x28 pixels.
-		int i = 0, z = 0;
-		
 		std::vector<Image> a(1);
 		
 		ofImage img;
@@ -72,11 +71,11 @@ void ofApp::draw(){
 			img.setImageType(OF_IMAGE_GRAYSCALE);
 			ofPixels &pixels = img.getPixels();
 			
+			// Create binary image of the drawn image.
 			for (int k = 0; k < IMAGE_SIZE; k++) {
 				std::string line = "";
 				for (int l = 0; l < IMAGE_SIZE; l++) {
-					
-					if(pixels[IMAGE_SIZE*k + l] > 180) {
+					if(pixels[IMAGE_SIZE*k + l] > kMinBrightness) {
 						line.push_back('1');
 					} else {
 						line.push_back('0');
@@ -84,15 +83,13 @@ void ofApp::draw(){
 				}
 				a[0].image.push_back(line);
 			}
-			i++;
 		}
-		//-----------------------------------------------------
+		// -----------------------------------------------------
 		
-		//Creating 2D vector of probabilities of each class for each number in testing.
-		std::string probability_model = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/probability_model.txt";
-		std::vector<std::vector<double>> classification = MapClassification(probability_model, a, kLabelsPath);
+		// Creating 2D vector of probabilities of the possible classification of the writing.
+		std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, a, kLabelsPath);
 		
-		std::ifstream file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt");
+		std::ifstream file(kLabelsPath);
 		GotoLine(file,PosteriorProbabilities(classification[0]));
 		
 		line = "";
@@ -128,35 +125,32 @@ void ofApp::CreateProbabilityModel() {
 	std::string training_labels = kLabelsPath;
 	std::string training_images = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
 	
-	//Filling training vector with images and labels that are connected through its classification.
+	// Filling training vector with images and labels that are connected through its classification.
 	ImageVector(training_labels, training_images, training, kTrainingSize/kNumCharacters);
-	ShadedProbability(training, training_labels);
+	ShadedProbability(training);
 }
 
 //--------------------------------------------------------------
 void ofApp::TestModelAccuracy() {
-	//Creating a vector with each binary-converted image and label connected.
+	// Creating a vector with each binary-converted image and label connected.
 	std::vector<Image> testing(kTestingSize);
-	
 	ImageVector(kTestingLabelsPath, kTestingImagesPath, testing, kTestingSize/kNumCharacters);
 	
-	//Creating 2D vector of probabilities of each class for each number in testing.
-	std::string probability_model = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/probability_model.txt";
-	std::vector<std::vector<double>> classification = MapClassification(probability_model, testing,
+	// Creating 2D vector of probabilities of each class for each image in testing.
+	std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, testing,
 																																			kLabelsPath);
 	
-	//Calculating accuracy of model.
+	// Calculating accuracy of model.
 	double num_correct = 0;
 	for (int i = 0; i < testing.size(); i++) {
 		
-		std::ifstream file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt");
+		std::ifstream file(kLabelsPath);
 		GotoLine(file,PosteriorProbabilities(classification[i]));
 		
 		std::string line;
 		file >> line;
 		
-		//		std::cout << PosteriorProbabilities(classification[i]) << std::endl;
-		
+		// Count number of correct classifications to calculate accuracy of classifier.
 		if (line.compare(testing[i].classification) == 0) {
 			num_correct++;
 		}

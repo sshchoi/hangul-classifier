@@ -28,18 +28,23 @@ struct Model {
 
 /**
  * Increases the shaded count for an index by 1 if the character at that index in the binary image is 1.
- * @param dataset Image structure
- * @param model Model structure
+ * @param dataset Image structure.
+ * @param model Model structure.
  */
 void ShadedCount(Image &dataset, Model &model);
 
+/**
+ * Goes to the line of the text file that was specified.
+ * @param file The file that will be searched through.
+ * @param num The line number.
+ */
 std::ifstream& GotoLine(std::ifstream& file, unsigned int num);
 
 /**
  * Calculates probability of a certain pixel being shaded or not per class and outputs it to a txt file.
- * @param dataset
+ * @param dataset The vector filled with Image.
  */
-void ShadedProbability(std::vector<Image> dataset, std::string path);
+void ShadedProbability(std::vector<Image> dataset);
 
 /**
  * Copies details from probabilities text to create 2D vector of probabilities for each number

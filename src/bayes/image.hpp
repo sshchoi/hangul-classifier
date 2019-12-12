@@ -34,9 +34,10 @@ struct Image {
 
 /**
  * Creates an image with each pixel changed to 0 or 1 depending on whether or not its unshaded or not, respectively.
- * @param data_labels
- * @param data_text
- * @param dataset
+ * @param data_labels The path to the label text file.
+ * @param images_directory_path The directory with all images that will be looped through.
+ * @param dataset Vector of Images.
+ * @param num The number of occurences of a certain label in the images directory.
  */
 void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset, int num);
 

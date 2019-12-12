@@ -28,22 +28,22 @@ std::ifstream& GotoLine(std::ifstream& file, unsigned int num){
     return file;
 }
 
-void ShadedProbability(std::vector<Image> dataset, std::string path) {
+void ShadedProbability(std::vector<Image> dataset) {
 	std::vector<Model> model(NUM_CLASSES);
 	
 	// Looping through each possible class.
 	for (int i = 0; i < NUM_CLASSES; i++) {
-		// Looping through numbers 0-9
 		std::ifstream file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt");
 		GotoLine(file,i);
 		
+		// Finding the character on each line.
 		std::string line;
     file >> line;
 		
 		for (int j = 0; j < NUM_TRAINING_IMAGES; j++) {
-			// Loop through dataset to find classification that matches 0-9.
+			// Loop through dataset to find classification that matches the character.
 			if (dataset[j].classification.compare(line) == 0) {
-				//Loop through the entire image
+				//Loop through the entire image.
 				ShadedCount(dataset[j], model[i]);
 			}
 		}
@@ -107,7 +107,7 @@ MapClassification(std::string probabilities_txt, std::vector<Image> &guess, std:
 		std::vector<double> newColumn;
 		log_probability.push_back(newColumn);
 		
-		//Looping through all of the classes (numbers from 0-9).
+		//Looping through all of the character classes.
 		for (int j = 0; j < NUM_CLASSES; j++) {
 			double a = 0;
 			log_probability[i].push_back(a);

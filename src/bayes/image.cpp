@@ -42,7 +42,6 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 		
 		ofImage img;
 		if(img.load(path)) {
-			//			std::cout << entry.path() << std::endl;
 			img.setImageType(OF_IMAGE_GRAYSCALE);
 			ofPixels &pixels = img.getPixels();
 			
