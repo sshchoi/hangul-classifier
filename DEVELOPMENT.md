@@ -4,8 +4,9 @@
 - **11/23/19**
 	- Fixed bug with clear button.
 	- Cleaned up code regarding the drawing brush size.
+	- Began searching for all 100 korean .ttf fonts.
 - **11/28/19**
-	- Find 100 korean .ttf fonts to use.
+	- Found all 100 korean .ttf fonts to use.
 	- Started to figure out how to add text to images and save them.
 - **11/29/19**
 	- Continued to explore adding text to images and centering them.
