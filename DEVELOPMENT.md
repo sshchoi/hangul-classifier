@@ -21,3 +21,18 @@
 - **12/05/19**
 	- Figured out how to write TTF text in Korean into an ofImage and save it, allowing for the creation of a testing set.
 	- Deskewed Korean alphabet images with ofxOpenCv.
+- **12/07/19 - 12/09/19**
+	- Continuously attempted to figure out how to center text, to no avail.
+	- Started working on Naive Bayes classifier.
+- **12/10/19**
+	- Figured out how to center text using contours and created method that centers it in the image.
+	- Changed image into binary vector to be used in the classifier.
+	- Recreated 2400 training images (took 6 hours).
+- **12/11/19**
+	- Finished working on the classifier.
+	- Edited directory iterator that did not follow the order of the images in the directory by name.
+	- Allowed ofImage that was previously collected by analyze to be shifted into the binary string vector that is used by the classifier.
+	- Created testing set and labels which resulted in a 79.166% accuracy rate.
+	- Added Catch2 and minimal tests in project.
+	- Streamlined and commented out code.
+
