@@ -18,12 +18,15 @@ private:
 	const int kTrainingSize = 2400;
 	const int kNumCharacters = 24;
 	const int kMinBrightness = 180;
+    
+    const std::string kHangulDataPath = ofDirectory("hanguldata/").getAbsolutePath();
 	
-	const std::string kFontPath = "../../hanguldata/fonts";
-	const std::string kLabelsPath = "../../hanguldata/labels.txt";
-	const std::string kTestingLabelsPath = "../../hanguldata/testing_labels.txt";
-	const std::string kTestingImagesPath = "../../hanguldata/test_images/";
-	const std::string kProbabilityModel = "../../hanguldata/probability_model.txt";
+	const std::string kFontPath = kHangulDataPath + "/fonts";
+	const std::string kLabelsPath = kHangulDataPath + "/labels.txt";
+    const std::string kTrainingImagesPath = kHangulDataPath + "/training_images";
+	const std::string kTestingLabelsPath = kHangulDataPath + "/testing_labels.txt";
+	const std::string kTestingImagesPath = kHangulDataPath + "/test_images";
+	const std::string kProbabilityModel = kHangulDataPath + "/probability_model.txt";
 	
 	image_generator H;
 	

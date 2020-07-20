@@ -37,7 +37,7 @@ void ImageVector(std::string data_labels, std::string images_directory_path, std
 	
 	// Loop through all images and create dataset vector.
 	for(int num = 1; num < NUM_TRAINING_IMAGES + 1; num++) {
-		std::string path = images_directory_path + std::to_string(num) + ".jpg";
+		std::string path = images_directory_path + "/" + std::to_string(num) + ".jpg";
 		
 		ofImage img;
 		if(img.load(path)) {

@@ -26,12 +26,12 @@ std::ifstream& GotoLine(std::ifstream& file, unsigned int num){
     return file;
 }
 
-void ShadedProbability(std::vector<Image> dataset) {
+void ShadedProbability(std::vector<Image> dataset, std::string training_label, std::string probability_model) {
 	std::vector<Model> model(NUM_CLASSES);
 	
 	// Looping through each possible class.
 	for (int i = 0; i < NUM_CLASSES; i++) {
-		std::ifstream file("../../hanguldata/labels.txt");
+        std::ifstream file(training_label);
 		GotoLine(file,i);
 		
 		// Finding the character on each line.
@@ -59,7 +59,7 @@ void ShadedProbability(std::vector<Image> dataset) {
 	}
 	
 	//Create an output file where the probability model will be.
-	std::ofstream output_file("../../hanguldata/probability_model.txt");
+    std::ofstream output_file(probability_model);
 	
 	//Output in each line the probability for each class per pixel in order into the file.
 	for (int i = 0; i < model.size(); i++) {
@@ -74,7 +74,7 @@ void ShadedProbability(std::vector<Image> dataset) {
 }
 
 std::vector<std::vector<double>>
-MapClassification(std::string probabilities_txt, std::vector<Image> &guess, std::string training_labels) {
+MapClassification(std::string probabilities_txt, std::vector<Image> &guess) {
 	
 	std::ifstream probability_model(probabilities_txt);
 	std::vector<Model> probability(NUM_CLASSES);

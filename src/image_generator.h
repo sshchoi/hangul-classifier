@@ -25,15 +25,17 @@ public:
 	 Creates the 2400 image training set.
 	 @param labels_file The file path of the labels text file.
 	 @param font_directory_path The path of the directory with all fonts that the user wishes to be looped through.
+     @param save_path The path of the directory where training set will be saved to.
 	 */
-	void CreateTrainingSet(std::string labels_file, std::string font_directory_path);
+	void CreateTrainingSet(std::string labels_file, std::string font_directory_path, std::string save_path);
 	
 	/**
 	 Loops through all of the fonts in the given directory path with the given text.
 	 @param font_directory_path The path of the directory with all fonts that the user wishes to be looped through.
 	 @param text The string that will be produced in all of the fonts.
+     @param save_path The path of the directory where training set will be saved to.
 	 */
-	void LoopAllFonts(std::string font_directory_path, std::string text);
+	void LoopAllFonts(std::string font_directory_path, std::string text, std::string save_path);
 	
 	/**
 	 Returns the ofTrueTypeFont from the given file path.

@@ -29,9 +29,10 @@ void ofApp::setup(){
 	
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––-––
 	
-//	H.CreateTrainingSet(kLabelsPath, kFontPath);								//<-- Use when needed.
+    
+//	H.CreateTrainingSet(kLabelsPath, kFontPath, ofDirectory(kTrainingImagesPath).getAbsolutePath());								//<-- Use when needed.
 //	CreateProbabilityModel();																		//<-- Use when needed.
-//	TestModelAccuracy();																				//<-- Use when needed.
+	TestModelAccuracy();																				//<-- Use when needed.
 	
 }
 
@@ -55,10 +56,8 @@ void ofApp::draw(){
 		
 		ofImage image (myPixels);
 		image.resize(28, 28);
-		
-		std::string folder_path = "../../hanguldata/analyze/";
-		
-		std::string file_name = folder_path + "test.jpg";
+				
+		std::string file_name = "hanguldata/analyze/test.jpg";
 		image.save(file_name);
 		
 		//------------------------------------------------------
@@ -87,7 +86,7 @@ void ofApp::draw(){
 		// -----------------------------------------------------
 		
 		// Creating 2D vector of probabilities of the possible classification of the writing.
-		std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, a, kLabelsPath);
+		std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, a);
 		
 		std::ifstream file(kLabelsPath);
 		GotoLine(file,PosteriorProbabilities(classification[0]));
@@ -123,11 +122,10 @@ void ofApp::mousePressed(int x, int y, int button){
 void ofApp::CreateProbabilityModel() {
 	std::vector<Image> training(NUM_TRAINING_IMAGES);
 	std::string training_labels = kLabelsPath;
-	std::string training_images = "../../hanguldata/training_images/";
-	
+
 	// Filling training vector with images and labels that are connected through its classification.
-	ImageVector(training_labels, training_images, training, kTrainingSize/kNumCharacters);
-	ShadedProbability(training);
+    ImageVector(training_labels, kTrainingImagesPath, training, kTrainingSize/kNumCharacters);
+    ShadedProbability(training, kLabelsPath, kProbabilityModel);
 }
 
 //--------------------------------------------------------------
@@ -137,8 +135,7 @@ void ofApp::TestModelAccuracy() {
 	ImageVector(kTestingLabelsPath, kTestingImagesPath, testing, kTestingSize/kNumCharacters);
 	
 	// Creating 2D vector of probabilities of each class for each image in testing.
-	std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, testing,
-																																			kLabelsPath);
+	std::vector<std::vector<double>> classification = MapClassification(kProbabilityModel, testing);
 	
 	// Calculating accuracy of model.
 	double num_correct = 0;

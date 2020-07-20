@@ -6,17 +6,17 @@
 //
 #include "image_generator.h"
 
-void image_generator::CreateTrainingSet(std::string labels_file, std::string font_directory_path) {
+void image_generator::CreateTrainingSet(std::string labels_file, std::string font_directory_path, std::string save_path) {
 	std::ifstream file(labels_file);
 	std::string line;
 
 	for (int i = 0; getline(file, line); i++) {
-		LoopAllFonts(font_directory_path, line);
+		LoopAllFonts(font_directory_path, line, save_path);
 	}
 	file.close();
 }
 
-void image_generator::LoopAllFonts(std::string font_directory_path, std::string text) {
+void image_generator::LoopAllFonts(std::string font_directory_path, std::string text, std::string save_path) {
 	// Loops through all files in the given directory.
 	for (const auto & entry : std::filesystem::directory_iterator(font_directory_path)) {
 		font = LoadKoreanTTF(entry.path());
@@ -26,7 +26,7 @@ void image_generator::LoopAllFonts(std::string font_directory_path, std::string 
 		ofImage deskewed_image;
 		ofxCv::toOf(mat_image, deskewed_image);
 
-		std::string save_path = "../../hanguldata/training_images/";
+//		std::string save_path = "hanguldata/training_images/";
 		SaveImage(deskewed_image, save_path);
 	}
 }
@@ -136,7 +136,7 @@ cv::Mat image_generator::Deskew(ofImage& image) {
 
 void image_generator::SaveImage(ofImage image, std::string training_images_directory) {
 	// Set up naming of saved training image file.
-	std::string file_name = training_images_directory + to_string(count) + ".jpg";
+	std::string file_name = training_images_directory + "/" + to_string(count) + ".jpg";
 	image.save(file_name);
 	count++;
 	

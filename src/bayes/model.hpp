@@ -43,7 +43,7 @@ std::ifstream& GotoLine(std::ifstream& file, unsigned int num);
  * Calculates probability of a certain pixel being shaded or not per class and outputs it to a txt file.
  * @param dataset The vector filled with Image.
  */
-void ShadedProbability(std::vector<Image> dataset);
+void ShadedProbability(std::vector<Image> dataset, std::string training_label, std::string probability_model);
 
 /**
  * Copies details from probabilities text to create 2D vector of probabilities for each number
@@ -55,7 +55,7 @@ void ShadedProbability(std::vector<Image> dataset);
  * @return 2D vector of probabilities for each number in testing to be a certain class
  */
 std::vector<std::vector<double>>
-MapClassification(std::string probabilities_txt, std::vector<Image> &guess, std::string training_labels);
+MapClassification(std::string probabilities_txt, std::vector<Image> &guess);
 
 /**
  * Choosing largest posterior probability

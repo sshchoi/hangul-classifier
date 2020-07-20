@@ -41,8 +41,6 @@
 		0F23CA9623A1B952009592DA /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		0F23CA9723A1B952009592DA /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */; };
 		0F23CA9823A1B952009592DA /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 907C5B5E104864A2D3A25745 /* ofxToggle.cpp */; };
-		0F23CAA523A1BA13009592DA /* tests-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F23CAA423A1BA13009592DA /* tests-main.cpp */; };
-		0F28208523A1BB810076BD82 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F28208423A1BB810076BD82 /* test.cpp */; };
 		0F90F14F2399C6E4004F509B /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F90F14D2399C6E4004F509B /* image.cpp */; };
 		0FCF44AF23A11618001C7FB0 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF44AE23A11618001C7FB0 /* model.cpp */; };
 		101726ED3918C41E341C8C36 /* image_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDA9B2BF8668CF663C2793A8 /* image_generator.cpp */; };
@@ -134,9 +132,6 @@
 		0DFD72387B64CE27F04B4550 /* cvdef.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = cvdef.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/cvdef.h; sourceTree = SOURCE_ROOT; };
 		0F23CAA123A1B952009592DA /* fantastic-finale-tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fantastic-finale-tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F23CAA223A1B953009592DA /* fantastic-finale-seunghoon0821 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fantastic-finale-seunghoon0821 copy-Info.plist"; path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/fantastic-finale-seunghoon0821 copy-Info.plist"; sourceTree = "<absolute>"; };
-		0F23CAA423A1BA13009592DA /* tests-main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "tests-main.cpp"; sourceTree = "<group>"; };
-		0F28208323A1BB0B0076BD82 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
-		0F28208423A1BB810076BD82 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		0F7A29977E90E5E599704B17 /* timelapsers.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = timelapsers.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/stitching/detail/timelapsers.hpp; sourceTree = SOURCE_ROOT; };
 		0F90F14B2399771C004F509B /* labels.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = labels.txt; path = hanguldata/labels.txt; sourceTree = SOURCE_ROOT; };
 		0F90F14D2399C6E4004F509B /* image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = image.cpp; sourceTree = "<group>"; };
@@ -917,16 +912,6 @@
 				ABD711849F1A03CD1BF99C86 /* world.hpp */,
 			);
 			name = opencv2;
-			sourceTree = "<group>";
-		};
-		0F23CAA323A1B9F9009592DA /* tests */ = {
-			isa = PBXGroup;
-			children = (
-				0F28208323A1BB0B0076BD82 /* catch.hpp */,
-				0F23CAA423A1BA13009592DA /* tests-main.cpp */,
-				0F28208423A1BB810076BD82 /* test.cpp */,
-			);
-			path = tests;
 			sourceTree = "<group>";
 		};
 		0F288FD421D474F4AE2684D3 /* ml */ = {
@@ -2213,7 +2198,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				0F23CAA323A1B9F9009592DA /* tests */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -2411,14 +2395,14 @@
 			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "fantastic-finale-seunghoon0821" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				Base,
+				ja,
+				de,
+				en,
+				fr,
 			);
 			mainGroup = E4B69B4A0A3A1720003C02F2;
 			productRefGroup = E4B69B4A0A3A1720003C02F2;
@@ -2545,8 +2529,6 @@
 				0F23CA8F23A1B952009592DA /* ofxButton.cpp in Sources */,
 				0F23CA9023A1B952009592DA /* ofxColorPicker.cpp in Sources */,
 				0F23CA9223A1B952009592DA /* ofxGuiGroup.cpp in Sources */,
-				0F23CAA523A1BA13009592DA /* tests-main.cpp in Sources */,
-				0F28208523A1BB810076BD82 /* test.cpp in Sources */,
 				0F23CA9323A1B952009592DA /* ofxInputField.cpp in Sources */,
 				0F23CA9423A1B952009592DA /* ofxLabel.cpp in Sources */,
 				0F23CA9523A1B952009592DA /* ofxPanel.cpp in Sources */,
