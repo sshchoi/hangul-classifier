@@ -4,6 +4,7 @@
 //
 //  Created by SeungHoon Choi on 11/27/19.
 //
+#pragma once
 
 #ifndef image_generator_h
 #define image_generator_h

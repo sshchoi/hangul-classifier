@@ -4,9 +4,7 @@
 //
 //  Created by SeungHoon Choi on 12/11/19.
 //
-
 #include <stdio.h>
-
 #include "model.hpp"
 
 void ShadedCount(Image &dataset, Model &model) {
@@ -33,7 +31,7 @@ void ShadedProbability(std::vector<Image> dataset) {
 	
 	// Looping through each possible class.
 	for (int i = 0; i < NUM_CLASSES; i++) {
-		std::ifstream file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt");
+		std::ifstream file("../../hanguldata/labels.txt");
 		GotoLine(file,i);
 		
 		// Finding the character on each line.
@@ -61,7 +59,7 @@ void ShadedProbability(std::vector<Image> dataset) {
 	}
 	
 	//Create an output file where the probability model will be.
-	std::ofstream output_file("/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/probability_model.txt");
+	std::ofstream output_file("../../hanguldata/probability_model.txt");
 	
 	//Output in each line the probability for each class per pixel in order into the file.
 	for (int i = 0; i < model.size(); i++) {

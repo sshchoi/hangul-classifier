@@ -19,11 +19,11 @@ private:
 	const int kNumCharacters = 24;
 	const int kMinBrightness = 180;
 	
-	const std::string kFontPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/fonts";
-	const std::string kLabelsPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/labels.txt";
-	const std::string kTestingLabelsPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/testing_labels.txt";
-	const std::string kTestingImagesPath = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/test_images/";
-	const std::string kProbabilityModel = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/probability_model.txt";
+	const std::string kFontPath = "../../hanguldata/fonts";
+	const std::string kLabelsPath = "../../hanguldata/labels.txt";
+	const std::string kTestingLabelsPath = "../../hanguldata/testing_labels.txt";
+	const std::string kTestingImagesPath = "../../hanguldata/test_images/";
+	const std::string kProbabilityModel = "../../hanguldata/probability_model.txt";
 	
 	image_generator H;
 	

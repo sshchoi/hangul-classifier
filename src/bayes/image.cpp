@@ -4,7 +4,6 @@
 //
 //  Created by SeungHoon Choi on 12/5/19.
 //
-
 #include "image.hpp"
 
 void ImageVector(std::string data_labels, std::string images_directory_path, std::vector<Image> &dataset, int num) {

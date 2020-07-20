@@ -4,11 +4,10 @@
 //
 //  Created by SeungHoon Choi on 12/5/19.
 //
+#pragma once
 
 #ifndef model_hpp
 #define model_hpp
-
-#pragma once
 
 #include "image.hpp"
 #include <math.h>

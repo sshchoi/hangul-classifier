@@ -56,7 +56,7 @@ void ofApp::draw(){
 		ofImage image (myPixels);
 		image.resize(28, 28);
 		
-		std::string folder_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/analyze/";
+		std::string folder_path = "../../hanguldata/analyze/";
 		
 		std::string file_name = folder_path + "test.jpg";
 		image.save(file_name);
@@ -123,7 +123,7 @@ void ofApp::mousePressed(int x, int y, int button){
 void ofApp::CreateProbabilityModel() {
 	std::vector<Image> training(NUM_TRAINING_IMAGES);
 	std::string training_labels = kLabelsPath;
-	std::string training_images = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
+	std::string training_images = "../../hanguldata/training_images/";
 	
 	// Filling training vector with images and labels that are connected through its classification.
 	ImageVector(training_labels, training_images, training, kTrainingSize/kNumCharacters);

@@ -4,7 +4,6 @@
 //
 //  Created by SeungHoon Choi on 11/27/19.
 //
-
 #include "image_generator.h"
 
 void image_generator::CreateTrainingSet(std::string labels_file, std::string font_directory_path) {
@@ -27,7 +26,7 @@ void image_generator::LoopAllFonts(std::string font_directory_path, std::string 
 		ofImage deskewed_image;
 		ofxCv::toOf(mat_image, deskewed_image);
 
-		std::string save_path = "/Users/seunghoonchoi/Documents/Coding/CS 126/of_v20191111_osx_release/apps/myApps/fantastic-finale-seunghoon0821/hanguldata/training_images/";
+		std::string save_path = "../../hanguldata/training_images/";
 		SaveImage(deskewed_image, save_path);
 	}
 }
